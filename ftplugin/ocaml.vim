@@ -59,7 +59,7 @@ if !exists("no_plugin_maps") && !exists("no_ocaml_maps")
 	  \ " | silent! execute 'xunmap <buffer> <LocalLeader>C'"
   endif
 
-  nnoremap <buffer> <Plug>LUncomOn gI(* <End> *)<ESC>
+  nnoremap <buffer> <Plug>LUncomOn ^i(* <End> *)<ESC>
   nnoremap <buffer> <Plug>LUncomOff :s/^(\* \(.*\) \*)/\1/<CR>:noh<CR>
   xnoremap <buffer> <Plug>BUncomOn <ESC>:'<,'><CR>`<O<ESC>0i(*<ESC>`>o<ESC>0i*)<ESC>`<
   xnoremap <buffer> <Plug>BUncomOff <ESC>:'<,'><CR>`<dd`>dd`<
