@@ -126,16 +126,16 @@ syn region ocamlPpx matchgroup=ocamlPpxEncl start="\[@\{1,3\}" contains=TOP end=
 
 " "sig"
 syn region   ocamlSig matchgroup=ocamlSigEncl start="\<sig\>" matchgroup=ocamlSigEncl end="\<end\>" contains=ALLBUT,@ocamlContained,ocamlEndErr,ocamlModule
-syn region   ocamlModSpec matchgroup=ocamlKeyword start="\<module\>" matchgroup=ocamlModule end="\<\u\(\w\|'\)*\>" contained contains=@ocamlAllErrs,ocamlComment skipwhite skipempty nextgroup=ocamlModTRWith,ocamlMPRestr
+syn region   ocamlModSpec matchgroup=ocamlModKeyword start="\<module\>" matchgroup=ocamlModule end="\<\u\(\w\|'\)*\>" contained contains=@ocamlAllErrs,ocamlComment skipwhite skipempty nextgroup=ocamlModTRWith,ocamlMPRestr
 
 " "open"
-syn match   ocamlKeyword "\<open\>" skipwhite skipempty nextgroup=ocamlFullMod
+syn match   ocamlModKeyword "\<open\>" skipwhite skipempty nextgroup=ocamlFullMod
 
 " "include"
-syn match    ocamlKeyword "\<include\>" skipwhite skipempty nextgroup=ocamlModParam,ocamlFullMod
+syn match    ocamlModKeyword "\<include\>" skipwhite skipempty nextgroup=ocamlModParam,ocamlFullMod
 
 " "module" - somewhat complicated stuff ;-)
-syn region   ocamlModule matchgroup=ocamlKeyword start="\<module\>" matchgroup=ocamlModule end="\<\u\(\w\|'\)*\>" contains=@ocamlAllErrs,ocamlComment skipwhite skipempty nextgroup=ocamlPreDef
+syn region   ocamlModule matchgroup=ocamlModKeyword start="\<module\>" matchgroup=ocamlModule end="\<\u\(\w\|'\)*\>" contains=@ocamlAllErrs,ocamlComment skipwhite skipempty nextgroup=ocamlPreDef
 syn region   ocamlPreDef start="."me=e-1 matchgroup=ocamlKeyword end="\l\|=\|)"me=e-1 contained contains=@ocamlAllErrs,ocamlComment,ocamlModParam,ocamlGenMod,ocamlModTypeRestr,ocamlModTRWith nextgroup=ocamlModPreRHS
 syn region   ocamlModParam start="([^*]" end=")" contained contains=ocamlGenMod,ocamlModParam1,ocamlSig,ocamlVal
 syn match    ocamlModParam1 "\<\u\(\w\|'\)*\>" contained skipwhite skipempty
@@ -202,7 +202,7 @@ syn match    ocamlConstructor  "\u\(\w\|'\)*\>"
 syn match    ocamlConstructor  "`\w\(\w\|'\)*\>"
 
 " Module prefix
-syn match    ocamlModPath      "\u\(\w\|'\)* *\."he=e-1
+syn match    ocamlModPath      "\u\(\w\|'\)* *\."
 
 syn match    ocamlCharacter    "'\\\d\d\d'\|'\\[\'ntbr]'\|'.'"
 syn match    ocamlCharacter    "'\\x\x\x'"
@@ -320,21 +320,21 @@ hi def link ocamlErr	   Error
 
 hi def link ocamlComment	   Comment
 
-hi def link ocamlModPath	   Include
-hi def link ocamlObject	   Include
-hi def link ocamlModule	   Include
-hi def link ocamlModParam1    Include
-hi def link ocamlGenMod       Include
-hi def link ocamlModType	   Include
-hi def link ocamlMPRestr3	   Include
-hi def link ocamlFullMod	   Include
-hi def link ocamlFuncWith	   Include
-hi def link ocamlModParam     Include
-hi def link ocamlModTypeRestr Include
-hi def link ocamlWith	   Include
-hi def link ocamlMTDef	   Include
-hi def link ocamlSigEncl	   ocamlModule
-hi def link ocamlStructEncl	   ocamlModule
+hi def link ocamlModPath	Include
+hi def link ocamlObject	        Include
+hi def link ocamlModule	        Include
+hi def link ocamlFullMod	ocamlModule
+hi def link ocamlFuncWith	ocamlModule
+hi def link ocamlWith	        ocamlModule
+hi def link ocamlSigEncl	ocamlModule
+hi def link ocamlStructEncl	ocamlModule
+hi def link ocamlModParam1      Include
+hi def link ocamlGenMod         Include
+hi def link ocamlModType	Include
+hi def link ocamlMPRestr3	Include
+hi def link ocamlModParam       Include
+hi def link ocamlModTypeRestr   Include
+hi def link ocamlMTDef	        Include
 
 hi def link ocamlScript	   Include
 
@@ -342,7 +342,8 @@ hi def link ocamlConstructor  Constant
 hi def link ocamlConstructorDelimiter  ocamlConstructor
 
 hi def link ocamlVal          Keyword
-hi def link ocamlModPreRHS    Keyword
+hi def link ocamlModPreRHS    ocamlModKeyword
+hi def link ocamlModKeyword   Keyword
 hi def link ocamlMPRestr2	   Keyword
 hi def link ocamlKeyword	   Keyword
 hi def link ocamlKeywordDelimiter	   ocamlKeyword
